@@ -4,7 +4,7 @@
 
 [fraud-all-current-10u-10000loop-test-Plan.jmx](./fraud-all-current-10u-10000loop-test-Plan.jmx)
 
-受限于网络，资源等原因，测试结果有些影响
+ue to network and resource limitations, the test results may be affected.
 
 
 ## API Details
