@@ -29,13 +29,11 @@
 
 该视频展示了系统主要功能与交互流程。建议使用 Chrome 或 Firefox 播放。
 
-[![Watch the preview](https://img.shields.io/badge/Preview-Click%20to%20watch-blue?style=for-the-badge)](./preview-fraud-new.mp4)
-
-<video width="640" height="360" controls>
+[<video width="640" height="360" controls>
   <source src="./preview-fraud-new.mp4" type="video/mp4">
   your browser do not support video。
 </video>
-
+](https://github.com/user-attachments/assets/4256aa4a-5184-4158-9e63-7b8d9f8cd447)
 
 ## 测试环境地址
 > **环境地址**：[http://121.43.35.48:8090/](http://121.43.35.48:8090/)
