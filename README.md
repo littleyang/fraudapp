@@ -11,11 +11,12 @@ This system provides intelligent fraud detection and response for real-time tran
 | **Transaction Notifications** | Record intercepted or alerted transactions. Supports queries and analysis by account, time and reason. |
 | **Notification Maintenance** | Configure notification channels (email, Webhook, SMS) and keep logs and statuses. |
 
+```html
 <video width="640" height="360" controls>
   <source src="./preview-fraud.mp4" type="video/mp4">
   your browser do not support video。
 </video>
-
+```
 
 ## Related Documentation
 

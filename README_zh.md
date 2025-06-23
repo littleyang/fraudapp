@@ -25,10 +25,13 @@
 | 8  | 功能优化考量设想     | [extend-design.md](docs/extend-design.md)                                  | 功能优化考量设想 |
 
 
+```html
 <video width="640" height="360" controls>
   <source src="./preview-fraud.mp4" type="video/mp4">
-  您的浏览器不支持 video 标签。
+  your browser do not support video。
 </video>
+```
+
 
 
 ## 测试环境地址
