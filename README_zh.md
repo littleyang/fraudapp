@@ -21,8 +21,14 @@
 | 4  | 系统设计文档md     | [fraud-design-detail.md](docs/fraud-design-detail.md)                      | 架构设计与功能模块说明 |
 | 5  | 系统设计文档pdf    | [design-detail.pdf](docs/design-detail.pdf)                                | Postman 接口测试集合 |
 | 6  | 接口文档（Postman） | [fraud-local.postman_collection.json](docs/fraud-local.postman_collection.json) | Postman 接口测试集合 |
-| 7  | 单元测试报告       | [index.html](htmlReport/index.html)                                        | 单元测试报告集合 |
+| 7  | 单元测试报告       | [index.html](./htmlReport/index.html)                                        | 单元测试报告集合 |
 | 8  | 功能优化考量设想     | [extend-design.md](docs/extend-design.md)                                  | 功能优化考量设想 |
+
+
+<video width="640" height="360" controls>
+  <source src="./preview-fraud.mp4" type="video/mp4">
+  您的浏览器不支持 video 标签。
+</video>
 
 
 ## 测试环境地址

@@ -11,6 +11,12 @@ This system provides intelligent fraud detection and response for real-time tran
 | **Transaction Notifications** | Record intercepted or alerted transactions. Supports queries and analysis by account, time and reason. |
 | **Notification Maintenance** | Configure notification channels (email, Webhook, SMS) and keep logs and statuses. |
 
+<video width="640" height="360" controls>
+  <source src="./preview-fraud.mp4" type="video/mp4">
+  your browser do not support video。
+</video>
+
+
 ## Related Documentation
 
 | No. | Document | File Path                                                                       | Description |
@@ -21,7 +27,7 @@ This system provides intelligent fraud detection and response for real-time tran
 | 4 | System Design (Markdown) | [fraud-design-detail.md](docs/fraud-design-detail_en.md)                        | Architecture design and module explanations |
 | 5 | System Design (PDF) | [design-detail.pdf](docs/design-detail.pdf)                                     | Postman API collection |
 | 6 | API Collection (Postman) | [fraud-local.postman_collection.json](docs/fraud-local.postman_collection.json) | Postman collection |
-| 7 | Unit Test Report | [index.html](htmlReport/index.html)                                             | Unit test summary |
+| 7 | Unit Test Report | [index.html](./htmlReport/index.html)                                             | Unit test summary |
 | 8 | Enhancement Considerations | [extend-design.md](docs/extend-design_en.md)                                    | Ideas for further improvements |
 
 ## Test Environment
