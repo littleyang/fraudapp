@@ -14,8 +14,6 @@ This system provides intelligent fraud detection and response for real-time tran
 
 ## 🎬 Project Preview Video
 
-[![Watch the preview](https://img.shields.io/badge/Preview-Click%20to%20watch-blue?style=for-the-badge)](./preview-fraud-new.mp4)
-
 https://github.com/user-attachments/assets/4256aa4a-5184-4158-9e63-7b8d9f8cd447
 
 ## Related Documentation
