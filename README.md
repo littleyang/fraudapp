@@ -11,12 +11,15 @@ This system provides intelligent fraud detection and response for real-time tran
 | **Transaction Notifications** | Record intercepted or alerted transactions. Supports queries and analysis by account, time and reason. |
 | **Notification Maintenance** | Configure notification channels (email, Webhook, SMS) and keep logs and statuses. |
 
-```html
+
+## 🎬 Project Preview Video
+
+[![Watch the preview](https://img.shields.io/badge/Preview-Click%20to%20watch-blue?style=for-the-badge)](./preview-fraud-new.mp4)
+
 <video width="640" height="360" controls>
-  <source src="./preview-fraud.mp4" type="video/mp4">
+  <source src="./preview-fraud-new.mp4" type="video/mp4">
   your browser do not support video。
 </video>
-```
 
 ## Related Documentation
 

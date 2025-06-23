@@ -25,13 +25,16 @@
 | 8  | 功能优化考量设想     | [extend-design.md](docs/extend-design.md)                                  | 功能优化考量设想 |
 
 
-```html
+## 🎬项目预览视频
+
+该视频展示了系统主要功能与交互流程。建议使用 Chrome 或 Firefox 播放。
+
+[![Watch the preview](https://img.shields.io/badge/Preview-Click%20to%20watch-blue?style=for-the-badge)](./preview-fraud-new.mp4)
+
 <video width="640" height="360" controls>
-  <source src="./preview-fraud.mp4" type="video/mp4">
+  <source src="./preview-fraud-new.mp4" type="video/mp4">
   your browser do not support video。
 </video>
-```
-
 
 
 ## 测试环境地址
