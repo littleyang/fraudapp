@@ -1,0 +1,96 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /fraud
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  security:
+    enabled: false
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  aop:
+    auto: true
+  application:
+    name: fraud
+  # 数据源相关的配置
+  datasource:
+    app:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: ${spring.datasource.url:jdbc:mysql://121.43.35.48:3306/fraud}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username : ${spring.datasource.username:root}
+      password : ${spring.datasource.password:fraud123456}
+      hikari:
+        allow-pool-suspension: false
+        auto-commit: true
+        connection-timeout: 30000
+        idle-timeout: 600000
+        max-lifetime: 6000000
+        maximum-pool-size: 50
+        minimum-idle: 20
+  servlet:
+    multipart:
+      max-file-size: 5120000KB
+      max-request-size: 5120000KB
+  data:
+    redis:
+      host: ${spring.redis.host:121.43.35.48}
+      port: ${spring.redis.port:6379}
+      database: 0
+      password: ${spring.redis.password:changeme1234}
+      client-type: jedis
+      jedis:
+        pool:
+          enabled: true
+          max-active: 50
+          min-idle: 20
+          max-idle: 20
+
+#OpenFeign配置
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+  okhttp:
+    enabled: false
+  httpclient:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+
+rocketmq:
+  #name-server: ${rocketmq.namesrv.addr:172.16.31.197:30976}
+  name-server: ${rocketmq.namesrv.addr:121.43.35.48:9876}
+  producer:
+    group: fraud-producer-group
+  consumer:
+    group: consumer
+  fraud_alert_topic: fraud_alert_topic
+  fraud:
+    consumer:
+      group: fraud_consumer
+      tlsEnable: false
+# 日志配置
+logging:
+  file:
+    path: /data/logs
+  level:
+    org: error

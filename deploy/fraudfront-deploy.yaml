@@ -1,0 +1,102 @@
+# fraudfront Deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: fraudapp
+  name: fraudfront-deployment
+  labels:
+    app: fraudfront
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: fraudfront
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: fraudfront
+    spec:
+      imagePullSecrets:
+        - name: regcred  # 私有镜像仓库凭证
+      containers:
+        - name: fraudfront
+          image: crpi-1nz5mrv3oba11j6z.cn-hangzhou.personal.cr.aliyuncs.com/fraudapp25/fraudfront:release
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            failureThreshold: 5
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+
+---
+
+# fraudfront Service (NodePort)
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: fraudapp
+  name: fraudfront-service
+  labels:
+    app: fraudfront
+spec:
+  type: NodePort
+  selector:
+    app: fraudfront
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
+
+---
+
+# fraudfront HPA (Horizontal Pod Autoscaler)
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  namespace: fraudapp
+  name: fraudfront-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: fraudfront-deployment
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 70

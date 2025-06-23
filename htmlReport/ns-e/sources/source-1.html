@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > FraudRestResultCode</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.fraud.commons.enums</a>
+</div>
+
+<h1>Coverage Summary for Class: FraudRestResultCode (com.fraud.commons.enums)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FraudRestResultCode</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/28)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.fraud.commons.enums;
+&nbsp;
+&nbsp;
+&nbsp;import com.sct.bizmsg.codes.BizResultCode;
+&nbsp;
+<b class="nc">&nbsp;public enum FraudRestResultCode implements BizResultCode {</b>
+&nbsp;
+<b class="nc">&nbsp;    SUCCESS(&quot;success&quot;, &quot;调用成功&quot;, &quot;系统接口调用成功&quot;),</b>
+<b class="nc">&nbsp;    ERROR(&quot;error&quot;, &quot;调用错误&quot;, &quot;系统调用信息错误&quot;),</b>
+&nbsp;
+<b class="nc">&nbsp;    PARAMETER_ERROR(&quot;1000&quot;, &quot;参数不能为空&quot;, &quot;参数错误&quot;),</b>
+<b class="nc">&nbsp;    VERIFY_CODE_ERROR(&quot;1001&quot;, &quot;验证码错误&quot;, &quot;验证码错误&quot;),</b>
+<b class="nc">&nbsp;    USER_PASSWORD_ERROR(&quot;1003&quot;, &quot;用户密码验证失败&quot;, &quot;用户密码验证失败&quot;),</b>
+<b class="nc">&nbsp;    ACCOUNT_BAND(&quot;1005&quot;,&quot;账号禁用&quot;,&quot;账号禁用&quot;),</b>
+<b class="nc">&nbsp;    USER_DATA_NOT_EXIST(&quot;1004&quot;, &quot;账号信息不存在请联系注册&quot;, &quot;账号信息不存在请联系注册&quot;),</b>
+&nbsp;
+<b class="nc">&nbsp;    DATA_NOT_EXIST(&quot;2001&quot;, &quot;数据不存在&quot;, &quot;数据不存在&quot;),</b>
+<b class="nc">&nbsp;    DATA_RELATION_ERROR(&quot;2002&quot;, &quot;数据存在绑定资源&quot;, &quot;数据存在绑定资源&quot;),</b>
+<b class="nc">&nbsp;    DATA_DUPLICATION_ERROR(&quot;2003&quot;, &quot;已经存在&quot;, &quot;数据重复等问题&quot;),</b>
+<b class="nc">&nbsp;    QUOTA_OVER_LIMIT_ERROR(&quot;2004&quot;, &quot;资源超限额&quot;, &quot;资源超限额&quot;),</b>
+&nbsp;
+<b class="nc">&nbsp;    DATA_NOT_PERMIT_DELETE(&quot;2004&quot;, &quot;数据不能删除&quot;, &quot;数据不能删除&quot;),</b>
+<b class="nc">&nbsp;    MENUS_NOT_EXITS(&quot;3000&quot;,&quot;权限资源不存在&quot;,&quot;权限资源不存在&quot;),</b>
+<b class="nc">&nbsp;    DATA_NOT_PERMISSION(&quot;4000&quot;,&quot;无查询权限&quot;,&quot;无查询权限&quot;),</b>
+&nbsp;
+<b class="nc">&nbsp;    CHECK_NOT_PERMISSION(&quot;4001&quot;,&quot;权限验证失败&quot;,&quot;权限验证失败&quot;),</b>
+&nbsp;
+&nbsp;
+&nbsp;    ;
+&nbsp;
+&nbsp;    private String code;
+&nbsp;    private String alertMessage;
+&nbsp;    private String debugMessage;
+&nbsp;
+<b class="nc">&nbsp;    private FraudRestResultCode(String code) {</b>
+<b class="nc">&nbsp;        this.code = code;</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private FraudRestResultCode(String code, String alertMessage) {</b>
+<b class="nc">&nbsp;        this.code = code;</b>
+<b class="nc">&nbsp;        this.alertMessage = alertMessage;</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private FraudRestResultCode(String code, String alertMessage, String debugMessage) {</b>
+<b class="nc">&nbsp;        this.code = code;</b>
+<b class="nc">&nbsp;        this.alertMessage = alertMessage;</b>
+<b class="nc">&nbsp;        this.debugMessage = debugMessage;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String getCode() {
+<b class="nc">&nbsp;        return this.code;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String getAlertMessage() {
+<b class="nc">&nbsp;        return this.alertMessage;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public  String getDebugMessage() {
+<b class="nc">&nbsp;        return this.debugMessage;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-06-23 12:34</div>
+</div>
+</body>
+</html>

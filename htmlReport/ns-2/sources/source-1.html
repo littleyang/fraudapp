@@ -1,0 +1,275 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > LarkPassAopConfig</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.fraud.aop</a>
+</div>
+
+<h1>Coverage Summary for Class: LarkPassAopConfig (com.fraud.aop)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LarkPassAopConfig</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (37/37)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">LarkPassAopConfig$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">LarkPassAopConfig$$SpringCGLIB$$FastClass$$0</td>
+  </tr>
+  <tr>
+    <td class="name">LarkPassAopConfig$$SpringCGLIB$$FastClass$$1</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (37/37)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.fraud.aop;
+&nbsp;
+&nbsp;import com.sct.context.interceptors.CommonResultInterceptor;
+&nbsp;import com.sct.context.interceptors.InvocationDigestInterceptor;
+&nbsp;import com.sct.context.interceptors.InvocationTraceInterceptor;
+&nbsp;import org.aspectj.lang.annotation.Aspect;
+&nbsp;import org.springframework.aop.Advisor;
+&nbsp;import org.springframework.aop.aspectj.AspectJExpressionPointcut;
+&nbsp;import org.springframework.aop.support.DefaultPointcutAdvisor;
+&nbsp;import org.springframework.context.annotation.Bean;
+&nbsp;import org.springframework.context.annotation.Configuration;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;
+&nbsp;/**
+&nbsp; * @author zhouyang
+&nbsp; * @version 1.0.0
+&nbsp; * @description:
+&nbsp; * @since 2024/4/21
+&nbsp; */
+&nbsp;
+&nbsp;@Aspect
+&nbsp;@Component
+&nbsp;@Configuration
+<b class="fc">&nbsp;public class LarkPassAopConfig {</b>
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * RPC API通用返回结果封装
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    @Bean(name = &quot;apiCommonResultInterceptor&quot;)
+&nbsp;    public CommonResultInterceptor createApiCommonResultInterceptor(){
+<b class="fc">&nbsp;        return new CommonResultInterceptor();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Rest API 通用结果封装
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    @Bean(name = &quot;restResultInterceptor&quot;)
+&nbsp;    public CommonResultInterceptor createRestResultInterceptor(){
+<b class="fc">&nbsp;        return new CommonResultInterceptor(true);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * 调用链路结果封装
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    @Bean(name = &quot;traceInterceptor&quot;)
+&nbsp;    public InvocationTraceInterceptor createInvocationTraceInterceptor(){
+<b class="fc">&nbsp;        return new InvocationTraceInterceptor();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * 摘要日志封装
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    @Bean(name = &quot;apiDigestInterceptor&quot;)
+&nbsp;    public InvocationDigestInterceptor createApiDigestInterceptor(){
+<b class="fc">&nbsp;        InvocationDigestInterceptor interceptor = new InvocationDigestInterceptor(&quot;api-digest-log&quot;);</b>
+<b class="fc">&nbsp;        interceptor.setAppName(&quot;app&quot;);</b>
+<b class="fc">&nbsp;        return interceptor;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * RPC API result摘要日志切面配置
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    @Bean
+&nbsp;    public Advisor apiPointcutAdvisor(){
+<b class="fc">&nbsp;        AspectJExpressionPointcut apiPointcut = new AspectJExpressionPointcut();</b>
+<b class="fc">&nbsp;        apiPointcut.setExpression(&quot;execution(* com.sct.app.api..*.*(..))&quot;);</b>
+<b class="fc">&nbsp;        return new DefaultPointcutAdvisor(apiPointcut,createApiDigestInterceptor());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Bean
+&nbsp;    public Advisor apiResultPointcutAdvisor(){
+<b class="fc">&nbsp;        AspectJExpressionPointcut apiPointcut = new AspectJExpressionPointcut();</b>
+<b class="fc">&nbsp;        apiPointcut.setExpression(&quot;execution(* com.sct.app.api..*.*(..))&quot;);</b>
+<b class="fc">&nbsp;        return new DefaultPointcutAdvisor(apiPointcut,createApiCommonResultInterceptor());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @Bean(name = &quot;bizDigestInterceptor&quot;)
+&nbsp;    public InvocationDigestInterceptor createBizDigestInterceptor(){
+<b class="fc">&nbsp;        InvocationDigestInterceptor interceptor = new InvocationDigestInterceptor(&quot;biz-digest-log&quot;);</b>
+<b class="fc">&nbsp;        interceptor.setAppName(&quot;app&quot;);</b>
+<b class="fc">&nbsp;        return interceptor;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Bean
+&nbsp;    public Advisor bizPointcutAdvisor(){
+<b class="fc">&nbsp;        AspectJExpressionPointcut apiPointcut = new AspectJExpressionPointcut();</b>
+<b class="fc">&nbsp;        apiPointcut.setExpression(&quot;execution(* com.sct.app.biz..*.*(..))&quot;);</b>
+<b class="fc">&nbsp;        return new DefaultPointcutAdvisor(apiPointcut,createBizDigestInterceptor());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Bean
+&nbsp;    public Advisor bizPointcutTraceAdvisor(){
+<b class="fc">&nbsp;        AspectJExpressionPointcut apiPointcut = new AspectJExpressionPointcut();</b>
+<b class="fc">&nbsp;        apiPointcut.setExpression(&quot;execution(* com.sct.app.biz..*.*(..))&quot;);</b>
+<b class="fc">&nbsp;        return new DefaultPointcutAdvisor(apiPointcut,createInvocationTraceInterceptor());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Bean(name = &quot;dalDigestInterceptor&quot;)
+&nbsp;    public InvocationDigestInterceptor createDalDigestInterceptor(){
+<b class="fc">&nbsp;        InvocationDigestInterceptor interceptor = new InvocationDigestInterceptor(&quot;dal-digest-log&quot;);</b>
+<b class="fc">&nbsp;        interceptor.setAppName(&quot;app&quot;);</b>
+<b class="fc">&nbsp;        return interceptor;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Bean
+&nbsp;    public Advisor dalPointcutAdvisor(){
+<b class="fc">&nbsp;        AspectJExpressionPointcut apiPointcut = new AspectJExpressionPointcut();</b>
+<b class="fc">&nbsp;        apiPointcut.setExpression(&quot;execution(* com.sct.app.repository.app.mapper.*.*(..))&quot;);</b>
+<b class="fc">&nbsp;        return new DefaultPointcutAdvisor(apiPointcut,createDalDigestInterceptor());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * API call摘要配置
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    @Bean(name = &quot;salDigestInterceptor&quot;)
+&nbsp;    public InvocationDigestInterceptor createSalDigestInterceptor(){
+<b class="fc">&nbsp;        InvocationDigestInterceptor interceptor = new InvocationDigestInterceptor(&quot;sal-digest-log&quot;);</b>
+<b class="fc">&nbsp;        interceptor.setAppName(&quot;app&quot;);</b>
+<b class="fc">&nbsp;        return interceptor;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Bean
+&nbsp;    public Advisor salPointcutAdvisor(){
+<b class="fc">&nbsp;        AspectJExpressionPointcut apiPointcut = new AspectJExpressionPointcut();</b>
+<b class="fc">&nbsp;        apiPointcut.setExpression(&quot;execution(* com.sct.app.sal.*.*(..)))&quot;);</b>
+<b class="fc">&nbsp;        return new DefaultPointcutAdvisor(apiPointcut,createSalDigestInterceptor());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Bean
+&nbsp;    public Advisor restApiResultPointcutAdvisor(){
+<b class="fc">&nbsp;        AspectJExpressionPointcut apiPointcut = new AspectJExpressionPointcut();</b>
+<b class="fc">&nbsp;        apiPointcut.setExpression(&quot;@within(org.springframework.web.bind.annotation.RestController) &quot; +</b>
+&nbsp;                &quot;and ( @annotation(org.springframework.web.bind.annotation.RequestMapping) &quot; +
+&nbsp;                &quot;or @annotation(org.springframework.web.bind.annotation.GetMapping) &quot; +
+&nbsp;                &quot;or @annotation(org.springframework.web.bind.annotation.PostMapping) &quot; +
+&nbsp;                &quot;or @annotation(org.springframework.web.bind.annotation.PutMapping) &quot; +
+&nbsp;                &quot;or @annotation(org.springframework.web.bind.annotation.DeleteMapping))&quot;);
+<b class="fc">&nbsp;        return new DefaultPointcutAdvisor(apiPointcut,createRestResultInterceptor());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-06-23 12:33</div>
+</div>
+</body>
+</html>

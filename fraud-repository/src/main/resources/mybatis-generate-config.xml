@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!-- !!!! Driver Class Path !!!! -->
+    <classPathEntry location="C:\Users\Yang.Zhou\.m2\repository\com\mysql\mysql-connector-j\8.3.0\mysql-connector-j-8.3.0.jar"/>
+
+    <context id="context" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- !!!! Database Configurations !!!! -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://172.16.31.99:3306/fraud" userId="root" password="123456">
+        <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- !!!! Model Configurations !!!! -->
+        <javaModelGenerator targetPackage="com.fraud.repository.app.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- !!!! Mapper XML Configurations !!!! -->
+        <sqlMapGenerator targetPackage="app" targetProject="src/main/resources/mapper">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- !!!! Mapper Interface Configurations !!!! -->
+        <javaClientGenerator targetPackage="com.fraud.repository.app.mapper" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- !!!! Table Configurations !!!! -->
+
+<!--        <table tableName="blacklist" domainObjectName="BlacklistDO" enableCountByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+
+
+<!--        <table tableName="rule" domainObjectName="RuleDO" enableCountByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+
+
+<!--        <table tableName="transaction" domainObjectName="TransactionDO" enableCountByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+
+
+<!--        <table tableName="alert_record" domainObjectName="AlertRecordDO" enableCountByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+
+
+<!--        <table tableName="notify_user" domainObjectName="NotifyUserDO" enableCountByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+
+<!--                <table tableName="transaction" domainObjectName="TransactionDO" enableCountByExample="false"-->
+<!--                       enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+
+                <table tableName="alert_record" domainObjectName="AlertRecordDO" enableCountByExample="false"
+                       enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+
+
+        <!--                <table tableName="rule" domainObjectName="RuleDO" enableCountByExample="false"-->
+<!--                       enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+
+
+
+    </context>
+</generatorConfiguration>

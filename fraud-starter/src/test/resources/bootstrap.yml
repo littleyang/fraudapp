@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: fraud
+---
+#local 开发
+spring:
+  config:
+    activate:
+      on-profile: local
+#dev环境
+---
+spring:
+  config:
+    activate:
+      on-profile: dev

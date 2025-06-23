@@ -1,0 +1,721 @@
+{
+	"info": {
+		"_postman_id": "e5c3dbf4-355a-42d9-90c8-99304d3171ae",
+		"name": "fraud-local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34458869"
+	},
+	"item": [
+		{
+			"name": "rule",
+			"item": [
+				{
+					"name": "创建检测规则",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"amount\":\"30000\",\r\n     \"offHours\":\"2-3\",\r\n     \"blackCheck\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/fraud/rule/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"rule",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新检查规则",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"amount\":\"70000\",\r\n     \"offHours\":\"2-3\",\r\n     \"blackCheck\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/fraud/rule/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"rule",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "检测规则详情",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/rule/current/rule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"rule",
+								"current",
+								"rule"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "blacklist",
+			"item": [
+				{
+					"name": "创建黑名单",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"account\":\"zhags1n1322\",\r\n     \"name\":\"zsdha12g1\",\r\n     \"reason\": \"异常交易1信息港1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/fraud/blacklist/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"blacklist",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新黑名单",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"account\":\"zhangsna2233\",\r\n    \"name\":\"zshang\",\r\n    \"reason\": \"异常交易信息港10002\",\r\n    \"status\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/fraud/blacklist/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"blacklist",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询详情信息",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/blacklist/detail?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"blacklist",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "分页查询黑名单信息",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/blacklist/queryByPage?account=zh&pageNo=1&pageSize=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"blacklist",
+								"queryByPage"
+							],
+							"query": [
+								{
+									"key": "account",
+									"value": "zh"
+								},
+								{
+									"key": "name",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "reason",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "pageNo",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除黑名单",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/blacklist/delete?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"blacklist",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "alertRecord",
+			"item": [
+				{
+					"name": "查询通知详情信息",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/alert/record/detail?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"alert",
+								"record",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除通知记录",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/alert/record/delete?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"alert",
+								"record",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "分页查询通知记录",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/alert/record/queryByPage?pageNo=1&pageSize=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"alert",
+								"record",
+								"queryByPage"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "zhs",
+									"disabled": true
+								},
+								{
+									"key": "transactionID",
+									"value": "",
+									"description": "可选",
+									"disabled": true
+								},
+								{
+									"key": "pageNo",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "nofityUser",
+			"item": [
+				{
+					"name": "创建通知人员",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"user\":\"zhang3342\",\r\n     \"name\":\"zsdhan545532g\",\r\n     \"destination\": \"186243333424\",\r\n     \"type\": \"phone\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/fraud/notify/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"notify",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新更新通知",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"id\": 1,\r\n     \"user\":\"zhangsn3\",\r\n     \"name\":\"zsdhan555g\",\r\n     \"destination\": \"18624343404\",\r\n     \"type\": \"phone\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:30080/fraud/notify/user/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30080",
+							"path": [
+								"fraud",
+								"notify",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询通知详情信息",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/notify/user/detail?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"notify",
+								"user",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "分页查询通知人员",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/notify/user/queryByPage?user=zh&pageNo=1&pageSize=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"notify",
+								"user",
+								"queryByPage"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "zh"
+								},
+								{
+									"key": "pageNo",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除通知人员",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/notify/user/delete?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"notify",
+								"user",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transactionRecord",
+			"item": [
+				{
+					"name": "查询交易详情信息",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/transaction/detail?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"transaction",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除交易检测记录",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/transaction/delete?txId=3434534retewtwert3434534",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"transaction",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "txId",
+									"value": "3434534retewtwert3434534"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "分页查询交易记录",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "xtoken",
+								"value": "{{xtoken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/fraud/transaction/queryByPage?pageNo=1&pageSize=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fraud",
+								"transaction",
+								"queryByPage"
+							],
+							"query": [
+								{
+									"key": "account",
+									"value": "zhs",
+									"disabled": true
+								},
+								{
+									"key": "transactionID",
+									"value": "",
+									"description": "可选",
+									"disabled": true
+								},
+								{
+									"key": "pageNo",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "实时交易反欺诈检测",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transactionId\": \"228u4845339stdds\",\r\n    \"account\": \"ew1485r4\",\r\n    \"amount\": \"45659666\",\r\n    \"transactionTime\": 1750477432000,\r\n    \"description\": \"交易信454554息\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/fraud/tx/evaluate/check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fraud",
+						"tx",
+						"evaluate",
+						"check"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

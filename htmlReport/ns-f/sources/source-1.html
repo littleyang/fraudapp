@@ -1,0 +1,200 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > FraudAppDataSourceConfig</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.fraud.configuration.datasource</a>
+</div>
+
+<h1>Coverage Summary for Class: FraudAppDataSourceConfig (com.fraud.configuration.datasource)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FraudAppDataSourceConfig</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">FraudAppDataSourceConfig$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">FraudAppDataSourceConfig$$SpringCGLIB$$FastClass$$0</td>
+  </tr>
+  <tr>
+    <td class="name">FraudAppDataSourceConfig$$SpringCGLIB$$FastClass$$1</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.fraud.configuration.datasource;
+&nbsp;import com.zaxxer.hikari.HikariDataSource;
+&nbsp;import org.apache.ibatis.session.SqlSessionFactory;
+&nbsp;import org.mybatis.spring.SqlSessionFactoryBean;
+&nbsp;import org.mybatis.spring.annotation.MapperScan;
+&nbsp;import org.springframework.beans.factory.annotation.Qualifier;
+&nbsp;import org.springframework.boot.context.properties.ConfigurationProperties;
+&nbsp;import org.springframework.context.annotation.Bean;
+&nbsp;import org.springframework.context.annotation.Configuration;
+&nbsp;import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+&nbsp;import org.springframework.jdbc.core.JdbcTemplate;
+&nbsp;import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+&nbsp;import org.springframework.transaction.TransactionManager;
+&nbsp;
+&nbsp;import javax.sql.DataSource;
+&nbsp;
+&nbsp;/**
+&nbsp; * @author zhouyang
+&nbsp; */
+&nbsp;@Configuration
+&nbsp;@MapperScan(basePackages = {&quot;com.fraud.repository.app.mapper&quot;},
+&nbsp;        sqlSessionFactoryRef = &quot;fraudSqlSessionFactory&quot;)
+<b class="fc">&nbsp;public class FraudAppDataSourceConfig {</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * 指定mapper xml文件路径
+&nbsp;     */
+&nbsp;    public static final String MAPPER_LOCATION = &quot;classpath*:mapper/app/**/**/*Mapper*.xml&quot;;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * 数据库参数配置
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;
+&nbsp;    /**
+&nbsp;     * 数据源配置
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    @Bean(&quot;fraudDataSource&quot;)
+&nbsp;    @Qualifier(value = &quot;fraudDataSource&quot;)
+&nbsp;    @ConfigurationProperties(prefix = &quot;spring.datasource.app&quot;)
+&nbsp;    public HikariDataSource primaryDataSource() {
+<b class="fc">&nbsp;        return new HikariDataSource();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * 事务管理器
+&nbsp;     * @param dataSource
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    @Bean(name = &quot;fraudTransactionManager&quot;)
+&nbsp;    public TransactionManager TransactionManager(@Qualifier(&quot;fraudDataSource&quot;) DataSource dataSource) {
+<b class="fc">&nbsp;        return new DataSourceTransactionManager(dataSource);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * sqlsession factory
+&nbsp;     * @param dataSource
+&nbsp;     * @return
+&nbsp;     * @throws Exception
+&nbsp;     */
+&nbsp;    @Bean(name = &quot;fraudSqlSessionFactory&quot;)
+&nbsp;    public SqlSessionFactory gysSqlSessionFactory(@Qualifier(&quot;fraudDataSource&quot;) DataSource dataSource) throws Exception {
+<b class="fc">&nbsp;        final SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();</b>
+<b class="fc">&nbsp;        sessionFactoryBean.setDataSource(dataSource);</b>
+<b class="fc">&nbsp;        sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(FraudAppDataSourceConfig.MAPPER_LOCATION));</b>
+<b class="fc">&nbsp;        return sessionFactoryBean.getObject();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * jdbctemplates
+&nbsp;     * @param dataSource
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    @Bean(name = &quot;fraudjdbcTemplate&quot;)
+&nbsp;    public JdbcTemplate gysJdbcTemplate(@Qualifier(&quot;fraudDataSource&quot;) DataSource dataSource) {
+<b class="fc">&nbsp;        return new JdbcTemplate(dataSource);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-06-23 12:34</div>
+</div>
+</body>
+</html>

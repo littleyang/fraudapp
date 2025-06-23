@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+    <!-- 一些属性值 -->
+    <springProperty scope="context" name="port" source="server.port"/>
+    <springProperty scope="context" name="serverName" source="spring.application.name"/>
+    <springProperty scope="context" name="path" source="logging.file.path" defaultValue="/data/logs"/>
+    <springProperty scope="context" name="maxHistory" source="logging.file.max-history" defaultValue="20"/>
+    <springProperty scope="context" name="maxSize" source="logging.file.max-size" defaultValue="1000MB"/>
+
+    <property name="PACKAGE_PATH_SAL" value="com.sct.larkpass.sal"/>
+    <property name="PACKAGE_PATH_WEB" value="com.sct.larkpass.web"/>
+    <property name="PACKAGE_PATH_BIZ" value="com.sct.larkpass.biz"/>
+    <property name="PACKAGE_PATH_REPOSITORY" value="com.sct.larkpass.repository"/>
+
+
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS}|-|${serverName}|-|%thread|-|%-5level|-|%X{trace_id}|-|%traceId|-|%logger{5}:%line|-|%msg%n"/>
+
+    <conversionRule conversionWord="traceId" converterClass="com.sct.context.trace.TraceIdLogConverter"/>
+
+    <!--控制台日志打印-->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- root日志 appender  -->
+    <appender name="root" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${path}/${serverName}-web/${serverName}-web_root.log</file>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志输出位置 可相对、和绝对路径 -->
+            <fileNamePattern>
+                ${path}/${serverName}-web/${serverName}-web_root.log.%d{yyyyMMdd}.%i.zip
+            </fileNamePattern>
+            <!-- 过期时间 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>${maxSize}</MaxFileSize>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- error日志 -->
+    <appender name="error-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${path}/${serverName}-web/${serverName}-web_error.log</file>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志输出位置 可相对、和绝对路径 -->
+            <fileNamePattern>
+                ${path}/${serverName}-web/${serverName}-web_error.log.%d{yyyyMMdd}.%i.zip
+            </fileNamePattern>
+            <!-- 过期时间 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>${maxSize}</MaxFileSize>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- biz日志 -->
+    <appender name="biz-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${path}/${serverName}-web/${serverName}-web_biz.log</file>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志输出位置 可相对、和绝对路径 -->
+            <fileNamePattern>
+                ${path}/${serverName}-web/${serverName}-web_biz.log.%d{yyyyMMdd}.%i.zip
+            </fileNamePattern>
+            <!-- 过期时间 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>${maxSize}</MaxFileSize>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- sal日志 -->
+    <appender name="sal-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${path}/${serverName}-web/${serverName}-web_sal.log</file>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志输出位置 可相对、和绝对路径 -->
+            <fileNamePattern>
+                ${path}/${serverName}-web/${serverName}-web_sal.log.%d{yyyyMMdd}.%i.zip
+            </fileNamePattern>
+            <!-- 过期时间 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>${maxSize}</MaxFileSize>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- api日志 -->
+    <!-- web日志 -->
+    <appender name="web-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${path}/${serverName}-web/${serverName}-web_web.log</file>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志输出位置 可相对、和绝对路径 -->
+            <fileNamePattern>
+                ${path}/${serverName}-web/${serverName}-web_web.log.%d{yyyyMMdd}.%i.zip
+            </fileNamePattern>
+            <!-- 过期时间 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>${maxSize}</MaxFileSize>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="sql-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${path}/${serverName}-web/${serverName}-web_sql.log</file>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志输出位置 可相对、和绝对路径 -->
+            <fileNamePattern>
+                ${path}/${serverName}-web/${serverName}-web_sql.log.%d{yyyyMMdd}.%i.zip
+            </fileNamePattern>
+            <!-- 过期时间 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>${maxSize}</MaxFileSize>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="dal-digest-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${path}/${serverName}-web/${serverName}-web_dal_digest.log</file>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志输出位置 可相对、和绝对路径 -->
+            <fileNamePattern>
+                ${path}/${serverName}-web/${serverName}-web_dal_digest.log.%d{yyyyMMdd}.%i.zip
+            </fileNamePattern>
+            <!-- 过期时间 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>${maxSize}</MaxFileSize>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="api-digest-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${path}/${serverName}-web/${serverName}-web_api_digest.log</file>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志输出位置 可相对、和绝对路径 -->
+            <fileNamePattern>
+                ${path}/${serverName}-web/${serverName}-web_api_digest.log.%d{yyyyMMdd}.%i.zip
+            </fileNamePattern>
+            <!-- 过期时间 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>${maxSize}</MaxFileSize>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="biz-digest-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${path}/${serverName}-web/${serverName}-web_biz_digest.log</file>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志输出位置 可相对、和绝对路径 -->
+            <fileNamePattern>
+                ${path}/${serverName}-web/${serverName}-web_biz_digest.log.%d{yyyyMMdd}.%i.zip
+            </fileNamePattern>
+            <!-- 过期时间 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>${maxSize}</MaxFileSize>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="sal-digest-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${path}/${serverName}-web/${serverName}-web_sal_digest.log</file>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志输出位置 可相对、和绝对路径 -->
+            <fileNamePattern>
+                ${path}/${serverName}-web/${serverName}-web_sal_digest.log.%d{yyyyMMdd}.%i.zip
+            </fileNamePattern>
+            <!-- 过期时间 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>${maxSize}</MaxFileSize>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <!-- 所有日志都需要打印到控制台和root这个文件中(所以文件采集的时候会重复日志)、错误日志 -->
+    <root level="${log.level}" additivity="false">
+        <appender-ref ref="root"/>
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="error-appender"/>
+    </root>
+
+    <!-- web -->
+    <logger name="${PACKAGE_PATH_WEB}" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="web-appender"/>
+    </logger>
+
+    <!-- biz -->
+    <logger name="${PACKAGE_PATH_BIZ}" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="biz-appender"/>
+    </logger>
+
+    <!-- sal -->
+    <logger name="${PACKAGE_PATH_SAL}" additivity="true">
+        <level value="${log.level}"/>
+        <appender-ref ref="sal-appender"/>
+    </logger>
+
+    <!-- sql,repository -->
+    <logger name="${PACKAGE_PATH_REPOSITORY}" additivity="true">
+        <level value="${log.level}"/>
+        <appender-ref ref="sql-appender"/>
+    </logger>
+    <logger name="java.sql" additivity="true">
+        <level value="${log.level}"/>
+        <appender-ref ref="sql-appender"/>
+    </logger>
+    <logger name="org.mybatis" additivity="true">
+        <level value="${log.level}"/>
+        <appender-ref ref="sql-appender"/>
+    </logger>
+    <logger name="com.alibaba.druid" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="sql-appender"/>
+    </logger>
+
+    <!-- digest logger -->
+    <logger name="dal-digest-log" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="dal-digest-appender"/>
+    </logger>
+    <logger name="api-digest-log" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="api-digest-appender"/>
+    </logger>
+    <logger name="biz-digest-log" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="biz-digest-appender"/>
+    </logger>
+    <logger name="sal-digest-log" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="sal-digest-appender"/>
+    </logger>
+    <!-- digest logger -->
+
+</configuration>
