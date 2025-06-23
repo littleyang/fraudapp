@@ -1,0 +1,34 @@
+{
+  "Evaluate TX" : {
+    "transaction" : "Evaluate TX",
+    "sampleCount" : 10000,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 298.00960000000157,
+    "medianResTime" : 86.0,
+    "minResTime" : 70.0,
+    "maxResTime" : 7109.0,
+    "pct1ResTime" : 1093.0,
+    "pct2ResTime" : 1098.0,
+    "pct3ResTime" : 1111.0,
+    "throughput" : 31.504199509794656,
+    "receivedKBytesPerSec" : 13.625270936115784,
+    "sentKBytesPerSec" : 13.564280774877291
+  },
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 10000,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 298.00960000000157,
+    "medianResTime" : 86.0,
+    "minResTime" : 70.0,
+    "maxResTime" : 7109.0,
+    "pct1ResTime" : 1093.0,
+    "pct2ResTime" : 1098.0,
+    "pct3ResTime" : 1111.0,
+    "throughput" : 31.504199509794656,
+    "receivedKBytesPerSec" : 13.625270936115784,
+    "sentKBytesPerSec" : 13.564280774877291
+  }
+}
