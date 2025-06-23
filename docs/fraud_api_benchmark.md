@@ -2,6 +2,12 @@
 
 # 📊 接口性能压测报告
 
+10个并发测试计划文件[fraud-all-current-10u-10000loop-test-Plan.jmx](./fraud-all-current-10u-10000loop-test-Plan.jmx)
+
+```shell
+jmeter -n -t evaluate_tx_check_10u_10000loops.jmx -l result.csv -e -o report-html
+```
+
 ## 接口信息
 
 | 项目              | 内容                                     |
@@ -13,11 +19,6 @@
 
 ## 测试环境
 
-10个并发测试计划文件[fraud-all-current-10u-10000loop-test-Plan.jmx](./fraud-all-current-10u-10000loop-test-Plan.jmx)
-
-```shell
-jmeter -n -t evaluate_tx_check_10u_10000loops.jmx -l result.csv -e -o report-html
-```
 受限于网络，资源等原因，测试结果有些影响
 
 | 项目       | 配置                         |

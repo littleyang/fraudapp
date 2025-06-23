@@ -4,8 +4,11 @@
 
 [fraud-all-current-10u-10000loop-test-Plan.jmx](./fraud-all-current-10u-10000loop-test-Plan.jmx)
 
-ue to network and resource limitations, the test results may be affected.
+ue to network and resource limitations, the test results may be affected. next command  to test
 
+```shell
+jmeter -n -t evaluate_tx_check_10u_10000loops.jmx -l result.csv -e -o report-html
+```
 
 ## API Details
 
