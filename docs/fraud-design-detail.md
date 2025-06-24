@@ -152,10 +152,11 @@
 ### 2.3 MQ 扩展
 
 - 使用 RocketMQ 主从，或托管 MQ（如阿里云 ONS）
+![img.png](img/rocketmq-extend.png)
 
 ### 2.4 应用扩展部署
 
 - 多集群部署
 - 域名代理分发
 - 提高可用性
-![img.png](img/app-extends.png)
+  ![img.png](img/application-deployment-build.png)

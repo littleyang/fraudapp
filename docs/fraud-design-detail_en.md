@@ -150,10 +150,11 @@ To avoid duplicate submissions, each HTTP request includes an `Idempotent-Token`
 ### 2.3 MQ Scaling
 
 - RocketMQ master-slave or managed MQ such as Alibaba ONS
+![img.png](img/rocketmq-extend.png)
 
 ### 2.4 Application Deployment Expansion
 
 - Multiple clusters
 - Domain-based routing
 - Higher availability
-![img.png](img/app-extends.png)
+![img.png](img/application-deployment-build.png)
