@@ -32,7 +32,7 @@
 https://github.com/user-attachments/assets/4256aa4a-5184-4158-9e63-7b8d9f8cd447
 
 ## 测试环境地址
-> **环境地址**：[http://121.43.35.48:8090/](http://121.43.35.48:8090/)
+> **环境地址**：[http://115.29.178.65:9090/](http://115.29.178.65:9090/)
 
 ## 功能截图
 1. 检测规则设置![img.png](docs/img/fraud-front-rule-setting.png)
