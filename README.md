@@ -30,7 +30,7 @@ https://github.com/user-attachments/assets/4256aa4a-5184-4158-9e63-7b8d9f8cd447
 | 8 | Enhancement Considerations | [extend-design.md](docs/extend-design_en.md)                                    | Ideas for further improvements |
 
 ## Test Environment
-> **URL**: [http://121.43.35.48:8090/](http://121.43.35.48:8090/)
+> **URL**: [http://115.29.178.65:9090/](http://115.29.178.65:9090/)
 
 ## Feature Screenshots
 1. Detection rule configuration ![img.png](docs/img/fraud-front-rule-setting.png)
